@@ -1,0 +1,27 @@
+meta {
+  name: Invoices - should retrieve invoices with valid token
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{BASE_URL}}/invoices
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Status code is 200", function () {
+      expect(res.getStatus()).to.equal(200);
+  });
+  
+  test("Size of array", function () {
+      var jsonData = res.getBody();
+      expect(jsonData.data.length).to.be.eql(15);
+  });
+  
+}

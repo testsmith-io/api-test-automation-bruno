@@ -1,0 +1,33 @@
+name: API Test Automation with Bruno
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: 0 20 * * 6
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:    
+    - name: Checkout Repository
+      uses: actions/checkout@master
+    - name: Install Node
+      uses: actions/setup-node@v1
+      with: 
+        node-version: '20'
+    - name: Install Bruno CLI
+      run: |
+       npm install -g @usebruno/cli
+    - name: Run Bruno collection
+      run: |
+       bru run --env test --reporter-html results.html
+    - name: Output the run Details
+      uses: actions/upload-artifact@v4
+      with: 
+       name: RunReports
+       path: results.html
+

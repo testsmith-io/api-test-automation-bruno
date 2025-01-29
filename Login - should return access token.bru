@@ -1,0 +1,28 @@
+meta {
+  name: Login - should return access token
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{BASE_URL}}/users/login
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "email": "customer@practicesoftwaretesting.com",
+      "password": "welcome01"
+  }
+}
+
+tests {
+  test("Status code is 200", function () {
+      expect(res.getStatus()).to.equal(200);
+  });
+  test("Check if  access_token exists in response body", function () {
+      let jsonData = res.getBody();
+      expect(jsonData).to.have.property('access_token');
+  });
+}
