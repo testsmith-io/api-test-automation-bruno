@@ -17,7 +17,7 @@ All examples in this repository are designed to work with the **Practice Softwar
 
 ## Examples Included
 1. **GET Request**: Fetch a list of brands with `GET /brands`.
-2. **Login API**: Authenticate using `POST /login` with an email/password payload.
+2. **Login API**: Authenticate using `POST /users/login` with an email/password payload.
 3. **Protected API Request**: Authenticate, then use a token to fetch data with `GET /invoices`.
 
 ## Prerequisites
@@ -36,10 +36,10 @@ All examples in this repository are designed to work with the **Practice Softwar
    ```bash
    cd api-test-automation-bruno
    ```
-3. Run the Bruno collection using Newman:
+3. Run the Bruno collection using the Bruno CLI:
    ```bash
    bru run --env test --reporter-html results.html
    ```
 
 ## Automated Workflow
-The repository includes a GitHub Actions workflow to automatically execute the Bruno collections with Newman. It runs on every `push` and `pull_request` to ensure the tests pass seamlessly.
+The repository includes a GitHub Actions workflow to automatically execute the Bruno collections with the Bruno CLI. It runs on every `push` and `pull_request` to ensure the tests pass seamlessly.
